@@ -1,0 +1,108 @@
+body{
+    overflow: hidden; /* Hide scrollbars */
+    background-color: black;
+}
+
+main {
+    color: green;
+    display: inline-flex !important;
+    font-weight: bolder;
+}
+
+a {
+    color: green !important;
+    font-size: 20px;
+}
+.char-vector {
+    position: relative;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    animation: mymove infinite;
+    animation-name: example;
+    animation-timing-function: linear;
+    /* animation-duration: 12s; */
+}
+
+@keyframes example {
+    0% {top: -250px;}
+    100% {top:1100px;}
+}
+
+.time{
+    animation-duration: ;
+}
+.time20 {
+    animation-duration: 20s;
+}
+
+.time19 {
+    animation-duration: 19s;
+}
+
+.time18 {
+    animation-duration: 18s;
+}
+
+.time17 {
+    animation-duration: 17s;
+}
+
+.time16 {
+    animation-duration: 16s;
+}
+
+.time15 {
+    animation-duration: 15s;
+}
+
+.time14 {
+    animation-duration: 14s;
+}
+
+.time13 {
+    animation-duration: 13s;
+}
+
+.time12 {
+    animation-duration: 12s;
+}
+
+.time11 {
+    animation-duration: 11s;
+}
+
+.time10 {
+    animation-duration: 10s;
+}
+
+.time9 {
+    animation-duration: 9s;
+}
+
+.time8 {
+    animation-duration: 8s;
+}
+
+.time7 {
+    animation-duration: 7s;
+}
+
+.time6 {
+    animation-duration: 6s;
+}
+
+.time5 {
+    animation-duration: 5s;
+}
+
+.time4 {
+    animation-duration: 4s;
+}
+
+.time3 {
+    animation-duration: 3s;
+}
+
+.time2 {
+    animation-duration: 2s;
+}
