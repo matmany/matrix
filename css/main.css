@@ -14,19 +14,28 @@ a {
     font-size: 20px;
 }
 .char-vector {
+    /* height: 1500px; */
+    height: max-content;
     position: relative;
     writing-mode: vertical-rl;
     text-orientation: upright;
     animation: mymove infinite;
     animation-name: example;
     animation-timing-function: linear;
+    font-size: 20px;
     /* animation-duration: 12s; */
 }
 
 @keyframes example {
-    0% {top: -250px;}
+    0% {top: -950px;}
     100% {top:1100px;}
 }
+
+
+div:last-child {
+    background: #ff0000;
+ }
+
 
 .time{
     animation-duration: ;

@@ -4,53 +4,69 @@ function main() {
     let lines = [];
     let ids = [];
 
-    for (let index = 0; index < 80; index++) {
-        let time = Math.floor(Math.random()* (300 - 150)) + 150;
+    for (let index = 0; index < 60; index++) {
+        let time = Math.floor(Math.random() * (700 - 300)) + 300;
         lines.push(new Line(index, screnn));
-        ids[index] = window.setInterval(lines[index].UpDateChar.bind(lines[index]), time);
+        ids[index] = window.setInterval(lines[index].UpdateRandomChar.bind(lines[index]), time);
     }
 
 };
 //.fadeOut()
+//.animate()
 class Line {
     constructor(id, screen) {
         this.id = id;
-        this.fallTime = this.generateFallTime();
-        this.currentChar = this.changeChar();
+        this.fallTime = this.random(20, 4);
+        this.newChar = this.changeChar();
+        this.size = this.random(70, 30);
         this.HTMLString = this.generateHTMLtxt();
-        this.trailSize = this.generateTrailSize();
 
         screen.append(this.HTMLString);
         this.htmlElement = document.getElementById(this.id);
+        $('#'+this.id).css("animation-duration",this.random(40,5)+'s')
+        //this.UpdateRandomChar()
     }
 
     generateHTMLtxt() {
-        return '<a id=' + this.id + ' class="char-vector time'+this.fallTime+'">' + this.currentChar + '</a>';
+        let anchors = '';
+        let divString = '';
+        for (let index = 0; index < this.size; index++) {
+            anchors += this.generateNewChar();
+        }
+        //divString = '<div id=' + this.id + ' class="char-vector time'+this.fallTime+'">'+anchors+'</div>';
+        divString = '<div id=' + this.id + ' class="char-vector">'+anchors+'</div>';
+        return divString;
     }
 
-    generateFallTime() {
-        return Math.floor(Math.random()*(18 - 2)) + 2;
+    random(max, min) {
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    generateTrailSize() {
-        return Math.floor(Math.random()*(40-20)) + 20;
+    generateNewString(size){
+        let string = '';
+        for (let index = 0; index < size; index++) {
+            string += this.generateNewChar();
+        }
+        return string;
     }
 
-    UpDateChar() {
-        let oldchar = this.currentChar
+    generateNewChar() {
         let newChar = this.changeChar();
-        //this.htmlElement.innerHTML = '<a id='++'>'+K+'</a>'+ this.currentChar;
-        this.htmlElement.innerHTML = newChar;
-
+        return newChar;
     }
 
     UpdateFallTime() {
         let newFallTime = this.generateFallTime();
-        let myHTMLID = "#"+this.id;
-        $(myHTMLID).removeClass("time"+this.fallTime);
-        $(myHTMLID).addClass("time"+newFallTime);
+        let myHTMLID = "#" + this.id;
+        $(myHTMLID).removeClass("time" + this.fallTime);
+        $(myHTMLID).addClass("time" + newFallTime);
         this.fallTime = newFallTime;
+    }
 
+    UpdateRandomChar() {
+        
+        let news = this.generateNewString(this.size);
+        this.htmlElement.innerHTML = news;
 
     }
 
