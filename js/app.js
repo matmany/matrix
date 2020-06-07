@@ -4,7 +4,7 @@ function main() {
     let lines = [];
     let ids = [];
 
-    for (let index = 0; index < 40; index++) {
+    for (let index = 0; index < 70; index++) {
         let time = Math.floor(Math.random() * (700 - 300)) + 300;
         lines.push(new Line(index, screnn));
         ids[index] = window.setInterval(lines[index].UpdateRandomChar.bind(lines[index]), time);
