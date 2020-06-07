@@ -31,12 +31,6 @@ a {
     100% {top:1100px;}
 }
 
-
-div:last-child {
-    background: #ff0000;
- }
-
-
 .time{
     animation-duration: ;
 }

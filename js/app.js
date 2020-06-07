@@ -4,7 +4,7 @@ function main() {
     let lines = [];
     let ids = [];
 
-    for (let index = 0; index < 60; index++) {
+    for (let index = 0; index < 40; index++) {
         let time = Math.floor(Math.random() * (700 - 300)) + 300;
         lines.push(new Line(index, screnn));
         ids[index] = window.setInterval(lines[index].UpdateRandomChar.bind(lines[index]), time);
@@ -16,25 +16,19 @@ function main() {
 class Line {
     constructor(id, screen) {
         this.id = id;
-        this.fallTime = this.random(20, 4);
         this.newChar = this.changeChar();
-        this.size = this.random(70, 30);
+        this.size = this.random(40, 10);
         this.HTMLString = this.generateHTMLtxt();
 
         screen.append(this.HTMLString);
         this.htmlElement = document.getElementById(this.id);
-        $('#'+this.id).css("animation-duration",this.random(40,5)+'s')
-        //this.UpdateRandomChar()
+        $('#' + this.id).css("animation-duration", this.random(20, 5) + 's')
     }
 
     generateHTMLtxt() {
-        let anchors = '';
         let divString = '';
-        for (let index = 0; index < this.size; index++) {
-            anchors += this.generateNewChar();
-        }
-        //divString = '<div id=' + this.id + ' class="char-vector time'+this.fallTime+'">'+anchors+'</div>';
-        divString = '<div id=' + this.id + ' class="char-vector">'+anchors+'</div>';
+        let newString = this.generateNewString();
+        divString = '<div id=' + this.id + ' class="char-vector">' + newString + '</div>';
         return divString;
     }
 
@@ -42,11 +36,14 @@ class Line {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    generateNewString(size){
+    generateNewString(size) {
         let string = '';
-        for (let index = 0; index < size; index++) {
+        let white = '<a class="white-text">' + this.generateNewChar() + '</a>';
+        for (let ultimo = 0; ultimo < size; ultimo++) {
             string += this.generateNewChar();
         }
+        if (this.random(1, 3) === 2)
+            return string + white;
         return string;
     }
 
@@ -55,19 +52,9 @@ class Line {
         return newChar;
     }
 
-    UpdateFallTime() {
-        let newFallTime = this.generateFallTime();
-        let myHTMLID = "#" + this.id;
-        $(myHTMLID).removeClass("time" + this.fallTime);
-        $(myHTMLID).addClass("time" + newFallTime);
-        this.fallTime = newFallTime;
-    }
-
     UpdateRandomChar() {
-        
         let news = this.generateNewString(this.size);
         this.htmlElement.innerHTML = news;
-
     }
 
     changeChar() {
